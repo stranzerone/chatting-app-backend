@@ -12,7 +12,14 @@ dotenv.config({ path: ".env" });
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors());
+
+const FRONT = process.env.FRONTEND
+const FRONT2 = process.env.FRONTEND2
+
+app.use(cors({
+  origin: [FRONT, FRONT2],
+  credentials: true,
+}));
 
 db();
 
