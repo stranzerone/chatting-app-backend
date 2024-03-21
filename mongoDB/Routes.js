@@ -4,7 +4,7 @@ const route = express.Router()
 
 
 
-route.get('/getAll',async(req,res)=>{
+route.get('/',async(req,res)=>{
 
     try{
 

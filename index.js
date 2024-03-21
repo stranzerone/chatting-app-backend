@@ -23,7 +23,7 @@ app.use(cors({
 
 db();
 
-app.use('/users',route)
+app.use('/',route)
 
 
 setupSocket(server); // Pass the HTTP server instance to the setupSocket function
