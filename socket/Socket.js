@@ -7,10 +7,12 @@ dotenv.config({ path: ".env" });
 
 
 const FRONT = process.env.FRONTEND
+const FRONT2 = process.env.FRONTEND2
+
 export const setupSocket = (server) => {
     const io = new Server(server, {
        cors: {
-         origin: FRONT,
+         origin: [FRONT,FRONT2],
          credentials: true,
        },
     });
