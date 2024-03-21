@@ -6,7 +6,6 @@ import express from 'express'
 export const updateUserStatus =async({username, roomID,socket}) =>{
   try {
     // Check if the username exists in the room
-    console.log(username,roomID,socket,"KK")
     const existingUser = await Room.findOne({ username, roomID });
 
     if (!existingUser) {
@@ -33,9 +32,7 @@ export const updateStatus =async({socket}) =>{
       // Check if the username exists in the room
       console.log(socket,"here is the id")
       const existingUser = await Room.findOneAndUpdate({ socket:socket },{status:"0"});
-  if(existingUser){
-    console.log("user updated")
-  }
+ 
   
     } catch (error) {
       console.error('Error updating user status:', error);
@@ -44,11 +41,12 @@ export const updateStatus =async({socket}) =>{
 
 
 
-export const getAll =async()=>{
+export const getAll =async(req,res)=>{
+  const{room} = req.body
 
     try{
 
-        const response = await Room.find({roomID:"1234",status:'1'})
+        const response = await Room.find({roomID:room,status:'1'})
      
 
         res.status(200).json(response)

@@ -5,21 +5,17 @@ import cors from 'cors';
 import {setupSocket} from './socket/Socket.js'; // Adjust the import statement
 import db from './mongoDB/Connection.js';
 import route from './mongoDB/Routes.js';
-
+import bodyParser from 'body-parser';
 import dotenv from "dotenv";
+
 dotenv.config({ path: ".env" });
 
 const app = express();
+app.use(bodyParser.json());
+
 const server = http.createServer(app);
 
-
-const FRONT = process.env.FRONTEND
-const FRONT2 = process.env.FRONTEND2
-
-app.use(cors({
-  origin: [FRONT, FRONT2],
-  credentials: true,
-}));
+app.use(cors());
 
 db();
 
